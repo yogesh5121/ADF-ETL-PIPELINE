@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfdevthjbank"
+		},
+		"LS_BLOB_TO_ADLS_connectionString": {
+			"value": ""
+		},
+		"LS_SINK_BLOB_TO_ADLS_accountKey": {
+			"value": ""
+		},
+		"LS_SINK_BLOB_TO_ADLS_properties_typeProperties_url": {
+			"value": "https://adlsdevthjbank.dfs.core.windows.net/"
+		}
+	}
+}
