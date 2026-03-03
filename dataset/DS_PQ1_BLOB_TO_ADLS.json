@@ -1,0 +1,19 @@
+{
+	"name": "DS_PQ1_BLOB_TO_ADLS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SINK_BLOB_TO_ADLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "processed"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
