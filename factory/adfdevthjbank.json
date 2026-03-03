@@ -1,0 +1,9 @@
+{
+	"name": "adfdevthjbank",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d0138848-9112-4fd3-8c97-dd23e71ee003",
+		"tenantId": "5eb354a3-12fc-4325-bdf1-59fe2318d2fb"
+	}
+}
