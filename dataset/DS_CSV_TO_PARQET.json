@@ -1,0 +1,28 @@
+{
+	"name": "DS_CSV_TO_PARQET",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SINK_MP_CSV_TOADLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "processed"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "SIC_Code",
+				"type": "UTF8"
+			},
+			{
+				"name": "Description",
+				"type": "UTF8"
+			}
+		]
+	}
+}
