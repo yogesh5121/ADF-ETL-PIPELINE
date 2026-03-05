@@ -1,0 +1,17 @@
+{
+	"name": "DS_BLOB_DEL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_BLOB_TO_ADLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "orderscsv"
+			}
+		}
+	}
+}
