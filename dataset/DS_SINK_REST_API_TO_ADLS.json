@@ -1,0 +1,28 @@
+{
+	"name": "DS_SINK_REST_API_TO_ADLS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SINK_REST_API_TO_ADLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "processed"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "SIC_Code",
+				"type": "UTF8"
+			},
+			{
+				"name": "Description",
+				"type": "UTF8"
+			}
+		]
+	}
+}
