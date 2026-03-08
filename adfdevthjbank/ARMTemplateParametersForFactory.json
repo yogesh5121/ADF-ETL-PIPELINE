@@ -35,6 +35,9 @@
 		"LS_SINK_SQL_TO_ADLS_accountKey": {
 			"value": ""
 		},
+		"LS_SINK_MUTLI_SQL_ADLS_accountKey": {
+			"value": ""
+		},
 		"LS_DEL_BLOB_ADLS_properties_typeProperties_url": {
 			"value": "https://adlsdevthjbank.dfs.core.windows.net/"
 		},
@@ -75,6 +78,9 @@
 			"value": "sa"
 		},
 		"LS_SINK_SQL_TO_ADLS_properties_typeProperties_url": {
+			"value": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"LS_SINK_MUTLI_SQL_ADLS_properties_typeProperties_url": {
 			"value": "https://adlsdevthjbank.dfs.core.windows.net/"
 		}
 	}
