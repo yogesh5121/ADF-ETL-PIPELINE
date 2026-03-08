@@ -1,0 +1,16 @@
+{
+	"name": "DS_SOURCE_CPY_SQL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SOURCE_SQL_ADLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Orders"
+		}
+	}
+}
