@@ -11,11 +11,95 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_BLOB_TO_ADLS'"
 		},
+		"LS_DEL_BLOB_ADLS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_DEL_BLOB_ADLS'"
+		},
+		"LS_MP_CSV_TO_ADLS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_MP_CSV_TO_ADLS'"
+		},
 		"LS_SINK_BLOB_TO_ADLS_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SINK_BLOB_TO_ADLS'"
 		},
+		"LS_SINK_MP_CSV_TOADLS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SINK_MP_CSV_TOADLS'"
+		},
+		"LS_SINK_MYSQL_TO_ADLS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SINK_MYSQL_TO_ADLS'"
+		},
+		"LS_SINK_REST_API_TO_ADLS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SINK_REST_API_TO_ADLS'"
+		},
+		"LS_SOURCE_MYSQL_ADLS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SOURCE_MYSQL_ADLS'"
+		},
+		"LS_SOURCE_SQL_ADLS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SOURCE_SQL_ADLS'"
+		},
+		"LS_SINK_SQL_TO_ADLS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SINK_SQL_TO_ADLS'"
+		},
+		"LS_DEL_BLOB_ADLS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"LS_MP_CSV_TO_ADLS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adls2devthjbank.dfs.core.windows.net/"
+		},
+		"LS_REST_API_TO_ADLS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://retoolapi.dev/5yDVOt/data"
+		},
 		"LS_SINK_BLOB_TO_ADLS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"LS_SINK_MP_CSV_TOADLS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"LS_SINK_MYSQL_TO_ADLS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"LS_SINK_REST_API_TO_ADLS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"LS_SOURCE_MYSQL_ADLS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "root@127.0.0.1:3306"
+		},
+		"LS_SOURCE_MYSQL_ADLS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "yogesh_db"
+		},
+		"LS_SOURCE_MYSQL_ADLS_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "yogesh"
+		},
+		"LS_SOURCE_SQL_ADLS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "YOGESH-ACER\\SQLEXPRESS"
+		},
+		"LS_SOURCE_SQL_ADLS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "yogeshDB"
+		},
+		"LS_SOURCE_SQL_ADLS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sa"
+		},
+		"LS_SINK_SQL_TO_ADLS_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
 		},
@@ -49,15 +133,98 @@
 					"LS_BLOB_TO_ADLS_connectionString": {
 						"value": "[parameters('LS_BLOB_TO_ADLS_connectionString')]"
 					},
+					"LS_DEL_BLOB_ADLS_accountKey": {
+						"value": "[parameters('LS_DEL_BLOB_ADLS_accountKey')]"
+					},
+					"LS_MP_CSV_TO_ADLS_accountKey": {
+						"value": "[parameters('LS_MP_CSV_TO_ADLS_accountKey')]"
+					},
 					"LS_SINK_BLOB_TO_ADLS_accountKey": {
 						"value": "[parameters('LS_SINK_BLOB_TO_ADLS_accountKey')]"
 					},
+					"LS_SINK_MP_CSV_TOADLS_accountKey": {
+						"value": "[parameters('LS_SINK_MP_CSV_TOADLS_accountKey')]"
+					},
+					"LS_SINK_MYSQL_TO_ADLS_accountKey": {
+						"value": "[parameters('LS_SINK_MYSQL_TO_ADLS_accountKey')]"
+					},
+					"LS_SINK_REST_API_TO_ADLS_accountKey": {
+						"value": "[parameters('LS_SINK_REST_API_TO_ADLS_accountKey')]"
+					},
+					"LS_SINK_SQL_TO_ADLS_accountKey": {
+						"value": "[parameters('LS_SINK_SQL_TO_ADLS_accountKey')]"
+					},
+					"LS_DEL_BLOB_ADLS_properties_typeProperties_url": {
+						"value": "[parameters('LS_DEL_BLOB_ADLS_properties_typeProperties_url')]"
+					},
+					"LS_MP_CSV_TO_ADLS_properties_typeProperties_url": {
+						"value": "[parameters('LS_MP_CSV_TO_ADLS_properties_typeProperties_url')]"
+					},
+					"LS_REST_API_TO_ADLS_properties_typeProperties_url": {
+						"value": "[parameters('LS_REST_API_TO_ADLS_properties_typeProperties_url')]"
+					},
 					"LS_SINK_BLOB_TO_ADLS_properties_typeProperties_url": {
 						"value": "[parameters('LS_SINK_BLOB_TO_ADLS_properties_typeProperties_url')]"
+					},
+					"LS_SINK_MP_CSV_TOADLS_properties_typeProperties_url": {
+						"value": "[parameters('LS_SINK_MP_CSV_TOADLS_properties_typeProperties_url')]"
+					},
+					"LS_SINK_MYSQL_TO_ADLS_properties_typeProperties_url": {
+						"value": "[parameters('LS_SINK_MYSQL_TO_ADLS_properties_typeProperties_url')]"
+					},
+					"LS_SINK_REST_API_TO_ADLS_properties_typeProperties_url": {
+						"value": "[parameters('LS_SINK_REST_API_TO_ADLS_properties_typeProperties_url')]"
+					},
+					"LS_SINK_SQL_TO_ADLS_properties_typeProperties_url": {
+						"value": "[parameters('LS_SINK_SQL_TO_ADLS_properties_typeProperties_url')]"
 					}
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "adfdevthjbank_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"LS_SOURCE_MYSQL_ADLS_password": {
+						"value": "[parameters('LS_SOURCE_MYSQL_ADLS_password')]"
+					},
+					"LS_SOURCE_SQL_ADLS_password": {
+						"value": "[parameters('LS_SOURCE_SQL_ADLS_password')]"
+					},
+					"LS_SOURCE_MYSQL_ADLS_properties_typeProperties_server": {
+						"value": "[parameters('LS_SOURCE_MYSQL_ADLS_properties_typeProperties_server')]"
+					},
+					"LS_SOURCE_MYSQL_ADLS_properties_typeProperties_database": {
+						"value": "[parameters('LS_SOURCE_MYSQL_ADLS_properties_typeProperties_database')]"
+					},
+					"LS_SOURCE_MYSQL_ADLS_properties_typeProperties_username": {
+						"value": "[parameters('LS_SOURCE_MYSQL_ADLS_properties_typeProperties_username')]"
+					},
+					"LS_SOURCE_SQL_ADLS_properties_typeProperties_server": {
+						"value": "[parameters('LS_SOURCE_SQL_ADLS_properties_typeProperties_server')]"
+					},
+					"LS_SOURCE_SQL_ADLS_properties_typeProperties_database": {
+						"value": "[parameters('LS_SOURCE_SQL_ADLS_properties_typeProperties_database')]"
+					},
+					"LS_SOURCE_SQL_ADLS_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SOURCE_SQL_ADLS_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfdevthjbank_ArmTemplate_0')]"
+			]
 		}
 	]
 }

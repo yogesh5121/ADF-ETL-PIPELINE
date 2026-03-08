@@ -8,10 +8,73 @@
 		"LS_BLOB_TO_ADLS_connectionString": {
 			"value": ""
 		},
+		"LS_DEL_BLOB_ADLS_accountKey": {
+			"value": ""
+		},
+		"LS_MP_CSV_TO_ADLS_accountKey": {
+			"value": ""
+		},
 		"LS_SINK_BLOB_TO_ADLS_accountKey": {
 			"value": ""
 		},
+		"LS_SINK_MP_CSV_TOADLS_accountKey": {
+			"value": ""
+		},
+		"LS_SINK_MYSQL_TO_ADLS_accountKey": {
+			"value": ""
+		},
+		"LS_SINK_REST_API_TO_ADLS_accountKey": {
+			"value": ""
+		},
+		"LS_SOURCE_MYSQL_ADLS_password": {
+			"value": ""
+		},
+		"LS_SOURCE_SQL_ADLS_password": {
+			"value": ""
+		},
+		"LS_SINK_SQL_TO_ADLS_accountKey": {
+			"value": ""
+		},
+		"LS_DEL_BLOB_ADLS_properties_typeProperties_url": {
+			"value": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"LS_MP_CSV_TO_ADLS_properties_typeProperties_url": {
+			"value": "https://adls2devthjbank.dfs.core.windows.net/"
+		},
+		"LS_REST_API_TO_ADLS_properties_typeProperties_url": {
+			"value": "https://retoolapi.dev/5yDVOt/data"
+		},
 		"LS_SINK_BLOB_TO_ADLS_properties_typeProperties_url": {
+			"value": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"LS_SINK_MP_CSV_TOADLS_properties_typeProperties_url": {
+			"value": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"LS_SINK_MYSQL_TO_ADLS_properties_typeProperties_url": {
+			"value": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"LS_SINK_REST_API_TO_ADLS_properties_typeProperties_url": {
+			"value": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"LS_SOURCE_MYSQL_ADLS_properties_typeProperties_server": {
+			"value": "root@127.0.0.1:3306"
+		},
+		"LS_SOURCE_MYSQL_ADLS_properties_typeProperties_database": {
+			"value": "yogesh_db"
+		},
+		"LS_SOURCE_MYSQL_ADLS_properties_typeProperties_username": {
+			"value": "yogesh"
+		},
+		"LS_SOURCE_SQL_ADLS_properties_typeProperties_server": {
+			"value": "YOGESH-ACER\\SQLEXPRESS"
+		},
+		"LS_SOURCE_SQL_ADLS_properties_typeProperties_database": {
+			"value": "yogeshDB"
+		},
+		"LS_SOURCE_SQL_ADLS_properties_typeProperties_userName": {
+			"value": "sa"
+		},
+		"LS_SINK_SQL_TO_ADLS_properties_typeProperties_url": {
 			"value": "https://adlsdevthjbank.dfs.core.windows.net/"
 		}
 	}
