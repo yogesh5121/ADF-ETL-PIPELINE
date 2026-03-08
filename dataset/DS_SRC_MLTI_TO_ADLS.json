@@ -1,0 +1,24 @@
+{
+	"name": "DS_SRC_MLTI_TO_ADLS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SOURCE_SQL_ADLS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"TableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().TableName",
+				"type": "Expression"
+			}
+		}
+	}
+}
