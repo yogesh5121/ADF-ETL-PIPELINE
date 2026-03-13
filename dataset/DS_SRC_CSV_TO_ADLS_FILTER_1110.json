@@ -1,0 +1,32 @@
+{
+	"name": "DS_SRC_CSV_TO_ADLS_FILTER_1110",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SRC_CSV_TO_ADLS_1110",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "industry_sic (1).csv",
+				"fileSystem": "mulitpecsv"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SIC_Code",
+				"type": "String"
+			},
+			{
+				"name": "Description",
+				"type": "String"
+			}
+		]
+	}
+}

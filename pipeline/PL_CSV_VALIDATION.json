@@ -1,0 +1,21 @@
+{
+	"name": "PL_CSV_VALIDATION",
+	"properties": {
+		"activities": [
+			{
+				"name": "Validation1",
+				"type": "Validation",
+				"dependsOn": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "DS_SRC_CSV_TO_ADLS",
+						"type": "DatasetReference"
+					},
+					"timeout": "0.12:00:00",
+					"sleep": 10
+				}
+			}
+		],
+		"annotations": []
+	}
+}
