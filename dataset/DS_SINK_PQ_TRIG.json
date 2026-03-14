@@ -1,0 +1,96 @@
+{
+	"name": "DS_SINK_PQ_TRIG",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SRC_PQ_TRIG",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "processed"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "id",
+				"type": "INT64"
+			},
+			{
+				"name": "Sku",
+				"type": "UTF8"
+			},
+			{
+				"name": "TP_1",
+				"type": "UTF8"
+			},
+			{
+				"name": "TP_2",
+				"type": "UTF8"
+			},
+			{
+				"name": "index",
+				"type": "UTF8"
+			},
+			{
+				"name": "Weight",
+				"type": "UTF8"
+			},
+			{
+				"name": "Catalog",
+				"type": "UTF8"
+			},
+			{
+				"name": "MRP_Old",
+				"type": "UTF8"
+			},
+			{
+				"name": "Ajio_MRP",
+				"type": "UTF8"
+			},
+			{
+				"name": "Category",
+				"type": "UTF8"
+			},
+			{
+				"name": "Style_Id",
+				"type": "UTF8"
+			},
+			{
+				"name": "Paytm_MRP",
+				"type": "UTF8"
+			},
+			{
+				"name": "Amazon_MRP",
+				"type": "UTF8"
+			},
+			{
+				"name": "Myntra_MRP",
+				"type": "UTF8"
+			},
+			{
+				"name": "Flipkart_MRP",
+				"type": "UTF8"
+			},
+			{
+				"name": "Limeroad_MRP",
+				"type": "UTF8"
+			},
+			{
+				"name": "Snapdeal_MRP",
+				"type": "UTF8"
+			},
+			{
+				"name": "Final_MRP_Old",
+				"type": "UTF8"
+			},
+			{
+				"name": "Amazon_FBA_MRP",
+				"type": "UTF8"
+			}
+		]
+	}
+}
