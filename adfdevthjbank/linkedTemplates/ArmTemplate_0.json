@@ -19,6 +19,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_MP_CSV_TO_ADLS'"
 		},
+		"LS_SINK_ADLS_1110_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SINK_ADLS_1110'"
+		},
 		"LS_SINK_BLOB_TO_ADLS_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SINK_BLOB_TO_ADLS'"
@@ -26,6 +30,10 @@
 		"LS_SINK_MP_CSV_TOADLS_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SINK_MP_CSV_TOADLS'"
+		},
+		"LS_SINK_MUTLI_SQL_ADLS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SINK_MUTLI_SQL_ADLS'"
 		},
 		"LS_SINK_MYSQL_TO_ADLS_accountKey": {
 			"type": "secureString",
@@ -39,9 +47,25 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SINK_SQL_TO_ADLS'"
 		},
-		"LS_SINK_MUTLI_SQL_ADLS_accountKey": {
+		"LS_SRC_CSV_TO_ADLS_1110_accountKey": {
 			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_SINK_MUTLI_SQL_ADLS'"
+			"metadata": "Secure string for 'accountKey' of 'LS_SRC_CSV_TO_ADLS_1110'"
+		},
+		"LS_SRC_CSV_TO_ADLS_VD_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SRC_CSV_TO_ADLS_VD'"
+		},
+		"LS_SRC_LOOK_UP_CSV_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SRC_LOOK_UP_CSV'"
+		},
+		"LS_SRC_ADLS_TO_CSV_TRI_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SRC_ADLS_TO_CSV_TRI'"
+		},
+		"LS_SRC_PQ_TRIG_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SRC_PQ_TRIG'"
 		},
 		"LS_DEL_BLOB_ADLS_properties_typeProperties_url": {
 			"type": "string",
@@ -55,11 +79,19 @@
 			"type": "string",
 			"defaultValue": "https://retoolapi.dev/5yDVOt/data"
 		},
+		"LS_SINK_ADLS_1110_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
 		"LS_SINK_BLOB_TO_ADLS_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
 		},
 		"LS_SINK_MP_CSV_TOADLS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"LS_SINK_MUTLI_SQL_ADLS_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
 		},
@@ -75,7 +107,23 @@
 			"type": "string",
 			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
 		},
-		"LS_SINK_MUTLI_SQL_ADLS_properties_typeProperties_url": {
+		"LS_SRC_CSV_TO_ADLS_1110_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adls2devthjbank.dfs.core.windows.net/"
+		},
+		"LS_SRC_CSV_TO_ADLS_VD_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adls2devthjbank.dfs.core.windows.net/"
+		},
+		"LS_SRC_LOOK_UP_CSV_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adls2devthjbank.dfs.core.windows.net/"
+		},
+		"LS_SRC_ADLS_TO_CSV_TRI_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adls2devthjbank.dfs.core.windows.net/"
+		},
+		"LS_SRC_PQ_TRIG_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
 		}
@@ -147,6 +195,23 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/LS_SINK_ADLS_1110')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_SINK_ADLS_1110_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_SINK_ADLS_1110_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/LS_SINK_BLOB_TO_ADLS')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -175,6 +240,23 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('LS_SINK_MP_CSV_TOADLS_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_SINK_MUTLI_SQL_ADLS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_SINK_MUTLI_SQL_ADLS_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_SINK_MUTLI_SQL_ADLS_accountKey')]"
 					}
 				}
 			},
@@ -215,6 +297,74 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/LS_SINK_SQL_TO_ADLS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_SINK_SQL_TO_ADLS_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_SINK_SQL_TO_ADLS_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_SRC_CSV_TO_ADLS_1110')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_SRC_CSV_TO_ADLS_1110_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_SRC_CSV_TO_ADLS_1110_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_SRC_CSV_TO_ADLS_VD')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_SRC_CSV_TO_ADLS_VD_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_SRC_CSV_TO_ADLS_VD_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_SRC_LOOK_UP_CSV')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_SRC_LOOK_UP_CSV_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_SRC_LOOK_UP_CSV_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/integrationRuntime1')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
 			"apiVersion": "2018-06-01",
@@ -235,34 +385,34 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/LS_SINK_SQL_TO_ADLS')]",
+			"name": "[concat(parameters('factoryName'), '/LS_SRC_ADLS_TO_CSV_TRI')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "[parameters('LS_SINK_SQL_TO_ADLS_properties_typeProperties_url')]",
+					"url": "[parameters('LS_SRC_ADLS_TO_CSV_TRI_properties_typeProperties_url')]",
 					"accountKey": {
 						"type": "SecureString",
-						"value": "[parameters('LS_SINK_SQL_TO_ADLS_accountKey')]"
+						"value": "[parameters('LS_SRC_ADLS_TO_CSV_TRI_accountKey')]"
 					}
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/LS_SINK_MUTLI_SQL_ADLS')]",
+			"name": "[concat(parameters('factoryName'), '/LS_SRC_PQ_TRIG')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "[parameters('LS_SINK_MUTLI_SQL_ADLS_properties_typeProperties_url')]",
+					"url": "[parameters('LS_SRC_PQ_TRIG_properties_typeProperties_url')]",
 					"accountKey": {
 						"type": "SecureString",
-						"value": "[parameters('LS_SINK_MUTLI_SQL_ADLS_accountKey')]"
+						"value": "[parameters('LS_SRC_PQ_TRIG_accountKey')]"
 					}
 				}
 			},
@@ -325,255 +475,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/LS_BLOB_TO_ADLS')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_BLOB_TO_ADLS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_BLOB_TO_ADLS",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "industry_sic1.csv",
-						"container": "orderscsv"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "PK\u0003\u0004\u0014\u0000\u0006\u0000\b\u0000\u0000\u0000!\u0000b�h^\u0001\u0000\u0000�\u0004\u0000\u0000\u0013\u0000\b\u0002[Content_Types].xml �\u0004\u0002(�\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000���N�0\u0010E�H�C�-Jܲ@\b5��\u0012*Q>�ēƪc[�ii����\u0010B�\u0015j7�\u0012��{2��h�nm���ƻR\f����U^\u001b7/���%�\u0017\u0019�rZY�\u0014\u001b@1\u0019__�f�\u0000�q��R4D�AJ�\u001ah\u0015\u0016>����V\u0011�ƹ\f�Z�9����NV�\u00118ʩ�\u0010��\u0013�ji){^��-I\u0004�\"{�\u0016v^�P!XS)bR�r��K�s(�3�`c\u0002�0���\u000e���\u0006��7\u001eM4\u001a����ZƐk+�|\\|z�(���P��6\u0015h_-[�@�!���\u0000Pk��\u0016�2n�}�?\u0015�L��� ��%�\u0013\u001c��\u001bd����dN\u0018\"m",
-						"type": "String"
-					},
-					{
-						"name": "�ǞDO97*�~��ɸ8�O�c\u001c|n��\u0007�\u0004E��\u0014�\u0011���B\u0010��!$}�����;{���[����2�\u0006\u0000\u0000��\u0003\u0000PK\u0003\u0004\u0014\u0000\u0006\u0000\b\u0000\u0000\u0000!\u0000�U0#�\u0000\u0000\u0000L\u0002\u0000\u0000\u000b\u0000\b\u0002_rels/.rels �\u0004\u0002(�\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000��MO�0\f��H�����ݐ\u0010BKwAH�!T~�I�\u000f���$\u001bݿ'\u001c\u0010T\u001a�\u0003G�~����<���!��4��\u0012\u0014;#�w����qu\u0007*&r�Fq���\u0011v�����GJy(v��*����K��#F��D�\u0010�.W\u001a\t\u0013�\u001c�\u0016=��Z�MY�b��\u0001�BS����7��ϛז��",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_BLOB_TO_ADLS')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_CSV_TO_PARQET')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_SINK_MP_CSV_TOADLS",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "processed"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": [
-					{
-						"name": "SIC_Code",
-						"type": "UTF8"
-					},
-					{
-						"name": "Description",
-						"type": "UTF8"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_SINK_MP_CSV_TOADLS')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_MUTLIPLE_CSV')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_MP_CSV_TO_ADLS",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "mulitpecsv"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "SIC_Code",
-						"type": "String"
-					},
-					{
-						"name": "Description",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_MP_CSV_TO_ADLS')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_PARQUET_ADLS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_DEL_BLOB_ADLS",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "processed"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": [
-					{
-						"name": "id",
-						"type": "INT64"
-					},
-					{
-						"name": "Sku",
-						"type": "UTF8"
-					},
-					{
-						"name": "TP_1",
-						"type": "UTF8"
-					},
-					{
-						"name": "TP_2",
-						"type": "UTF8"
-					},
-					{
-						"name": "index",
-						"type": "UTF8"
-					},
-					{
-						"name": "Weight",
-						"type": "UTF8"
-					},
-					{
-						"name": "Catalog",
-						"type": "UTF8"
-					},
-					{
-						"name": "MRP_Old",
-						"type": "UTF8"
-					},
-					{
-						"name": "Ajio_MRP",
-						"type": "UTF8"
-					},
-					{
-						"name": "Category",
-						"type": "UTF8"
-					},
-					{
-						"name": "Style_Id",
-						"type": "UTF8"
-					},
-					{
-						"name": "Paytm_MRP",
-						"type": "UTF8"
-					},
-					{
-						"name": "Amazon_MRP",
-						"type": "UTF8"
-					},
-					{
-						"name": "Myntra_MRP",
-						"type": "UTF8"
-					},
-					{
-						"name": "Flipkart_MRP",
-						"type": "UTF8"
-					},
-					{
-						"name": "Limeroad_MRP",
-						"type": "UTF8"
-					},
-					{
-						"name": "Snapdeal_MRP",
-						"type": "UTF8"
-					},
-					{
-						"name": "Final_MRP_Old",
-						"type": "UTF8"
-					},
-					{
-						"name": "Amazon_FBA_MRP",
-						"type": "UTF8"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_DEL_BLOB_ADLS')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_PQ1_BLOB_TO_ADLS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_SINK_BLOB_TO_ADLS",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "processed"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_SINK_BLOB_TO_ADLS')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_REST_API_TO_ADLS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_REST_API_TO_ADLS",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_REST_API_TO_ADLS')]"
 			]
 		}
 	]
