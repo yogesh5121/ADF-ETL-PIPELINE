@@ -1251,8 +1251,8 @@
 				],
 				"type": "BlobEventsTrigger",
 				"typeProperties": {
-					"blobPathBeginsWith": "/csvfile/blobs/movies",
-					"blobPathEndsWith": ".csv",
+					"blobPathBeginsWith": "/csvfile/blobs/csvfile/movies",
+					"blobPathEndsWith": "/csvfile/.csv",
 					"ignoreEmptyBlobs": true,
 					"scope": "[parameters('TRIG_STORAGE_1_properties_typeProperties_scope')]",
 					"events": [
