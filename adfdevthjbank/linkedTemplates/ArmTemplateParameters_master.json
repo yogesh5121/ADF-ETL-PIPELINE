@@ -134,6 +134,9 @@
 		"TRIG_STORAGE_1_properties_typeProperties_scope": {
 			"value": "/subscriptions/71f50b89-71a8-4c69-9f9b-464b624e235d/resourceGroups/rg_dev_thjbank/providers/Microsoft.Storage/storageAccounts/adls2devthjbank"
 		},
+		"trigger2_properties_typeProperties_scope": {
+			"value": "/subscriptions/71f50b89-71a8-4c69-9f9b-464b624e235d/resourceGroups/rg_dev_thjbank/providers/Microsoft.Storage/storageAccounts/adls2devthjbank"
+		},
 		"containerUri": {
 			"value": ""
 		},
