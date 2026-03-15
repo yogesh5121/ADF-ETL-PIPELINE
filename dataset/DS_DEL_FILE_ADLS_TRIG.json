@@ -1,0 +1,18 @@
+{
+	"name": "DS_DEL_FILE_ADLS_TRIG",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_DEL_ADLS_CSV_TRIG",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "movies.csv",
+				"fileSystem": "csvfile"
+			}
+		}
+	}
+}
