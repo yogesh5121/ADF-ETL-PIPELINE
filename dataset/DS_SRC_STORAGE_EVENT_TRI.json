@@ -1,0 +1,22 @@
+{
+	"name": "DS_SRC_STORAGE_EVENT_TRI",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SRC_ADLS_TO_STORAGE_TRIG",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "csvfile"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
