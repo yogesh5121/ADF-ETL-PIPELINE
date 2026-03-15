@@ -41,6 +41,9 @@
 		"LS_SOURCE_SQL_ADLS_password": {
 			"value": ""
 		},
+		"LS_SRC_ADLS_TO_CSV_TRI_accountKey": {
+			"value": ""
+		},
 		"LS_SRC_CSV_TO_ADLS_1110_accountKey": {
 			"value": ""
 		},
@@ -50,10 +53,13 @@
 		"LS_SRC_LOOK_UP_CSV_accountKey": {
 			"value": ""
 		},
-		"LS_SRC_ADLS_TO_CSV_TRI_accountKey": {
+		"LS_SRC_PQ_TRIG_accountKey": {
 			"value": ""
 		},
-		"LS_SRC_PQ_TRIG_accountKey": {
+		"LS_SRC_ADLS_TO_STORAGE_TRIG_accountKey": {
+			"value": ""
+		},
+		"LS_SINK_ADLS_STORAGE_TRIG_accountKey": {
 			"value": ""
 		},
 		"LS_DEL_BLOB_ADLS_properties_typeProperties_url": {
@@ -104,6 +110,9 @@
 		"LS_SOURCE_SQL_ADLS_properties_typeProperties_userName": {
 			"value": "sa"
 		},
+		"LS_SRC_ADLS_TO_CSV_TRI_properties_typeProperties_url": {
+			"value": "https://adls2devthjbank.dfs.core.windows.net/"
+		},
 		"LS_SRC_CSV_TO_ADLS_1110_properties_typeProperties_url": {
 			"value": "https://adls2devthjbank.dfs.core.windows.net/"
 		},
@@ -113,11 +122,17 @@
 		"LS_SRC_LOOK_UP_CSV_properties_typeProperties_url": {
 			"value": "https://adls2devthjbank.dfs.core.windows.net/"
 		},
-		"LS_SRC_ADLS_TO_CSV_TRI_properties_typeProperties_url": {
-			"value": "https://adls2devthjbank.dfs.core.windows.net/"
-		},
 		"LS_SRC_PQ_TRIG_properties_typeProperties_url": {
 			"value": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"LS_SRC_ADLS_TO_STORAGE_TRIG_properties_typeProperties_url": {
+			"value": "https://adls2devthjbank.dfs.core.windows.net/"
+		},
+		"LS_SINK_ADLS_STORAGE_TRIG_properties_typeProperties_url": {
+			"value": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"TRIG_STORAGE_1_properties_typeProperties_scope": {
+			"value": "/subscriptions/71f50b89-71a8-4c69-9f9b-464b624e235d/resourceGroups/rg_dev_thjbank/providers/Microsoft.Storage/storageAccounts/adls2devthjbank"
 		},
 		"containerUri": {
 			"value": ""
