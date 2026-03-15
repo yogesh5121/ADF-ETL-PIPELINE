@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_BLOB_TO_ADLS'"
 		},
+		"LS_DEL_ADLS_CSV_TRIG_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_DEL_ADLS_CSV_TRIG'"
+		},
 		"LS_DEL_BLOB_ADLS_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_DEL_BLOB_ADLS'"
@@ -22,6 +26,10 @@
 		"LS_SINK_ADLS_1110_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SINK_ADLS_1110'"
+		},
+		"LS_SINK_ADLS_STORAGE_TRIG_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SINK_ADLS_STORAGE_TRIG'"
 		},
 		"LS_SINK_BLOB_TO_ADLS_accountKey": {
 			"type": "secureString",
@@ -51,6 +59,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SRC_ADLS_TO_CSV_TRI'"
 		},
+		"LS_SRC_ADLS_TO_STORAGE_TRIG_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SRC_ADLS_TO_STORAGE_TRIG'"
+		},
 		"LS_SRC_CSV_TO_ADLS_1110_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SRC_CSV_TO_ADLS_1110'"
@@ -67,13 +79,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SRC_PQ_TRIG'"
 		},
-		"LS_SRC_ADLS_TO_STORAGE_TRIG_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_SRC_ADLS_TO_STORAGE_TRIG'"
-		},
-		"LS_SINK_ADLS_STORAGE_TRIG_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_SINK_ADLS_STORAGE_TRIG'"
+		"LS_DEL_ADLS_CSV_TRIG_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adls2devthjbank.dfs.core.windows.net/"
 		},
 		"LS_DEL_BLOB_ADLS_properties_typeProperties_url": {
 			"type": "string",
@@ -88,6 +96,10 @@
 			"defaultValue": "https://retoolapi.dev/5yDVOt/data"
 		},
 		"LS_SINK_ADLS_1110_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"LS_SINK_ADLS_STORAGE_TRIG_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
 		},
@@ -119,6 +131,10 @@
 			"type": "string",
 			"defaultValue": "https://adls2devthjbank.dfs.core.windows.net/"
 		},
+		"LS_SRC_ADLS_TO_STORAGE_TRIG_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adls2devthjbank.dfs.core.windows.net/"
+		},
 		"LS_SRC_CSV_TO_ADLS_1110_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adls2devthjbank.dfs.core.windows.net/"
@@ -135,13 +151,9 @@
 			"type": "string",
 			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
 		},
-		"LS_SRC_ADLS_TO_STORAGE_TRIG_properties_typeProperties_url": {
+		"TRIG_STORAGE_1_properties_typeProperties_scope": {
 			"type": "string",
-			"defaultValue": "https://adls2devthjbank.dfs.core.windows.net/"
-		},
-		"LS_SINK_ADLS_STORAGE_TRIG_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
+			"defaultValue": "/subscriptions/71f50b89-71a8-4c69-9f9b-464b624e235d/resourceGroups/rg_dev_thjbank/providers/Microsoft.Storage/storageAccounts/adls2devthjbank"
 		}
 	},
 	"variables": {
@@ -157,6 +169,23 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('LS_BLOB_TO_ADLS_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_DEL_ADLS_CSV_TRIG')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_DEL_ADLS_CSV_TRIG_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_DEL_ADLS_CSV_TRIG_accountKey')]"
+					}
 				}
 			},
 			"dependsOn": []
@@ -222,6 +251,23 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('LS_SINK_ADLS_1110_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_SINK_ADLS_STORAGE_TRIG')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_SINK_ADLS_STORAGE_TRIG_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_SINK_ADLS_STORAGE_TRIG_accountKey')]"
 					}
 				}
 			},
@@ -347,6 +393,23 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/LS_SRC_ADLS_TO_STORAGE_TRIG')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_SRC_ADLS_TO_STORAGE_TRIG_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_SRC_ADLS_TO_STORAGE_TRIG_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/LS_SRC_CSV_TO_ADLS_1110')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -415,55 +478,22 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/integrationRuntime1')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/integrationRuntime2')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_SRC_ADLS_TO_STORAGE_TRIG')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"name": "[concat(parameters('factoryName'), '/TRIG_STORAGE_1')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"type": "AzureBlobFS",
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "BlobEventsTrigger",
 				"typeProperties": {
-					"url": "[parameters('LS_SRC_ADLS_TO_STORAGE_TRIG_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('LS_SRC_ADLS_TO_STORAGE_TRIG_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_SINK_ADLS_STORAGE_TRIG')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('LS_SINK_ADLS_STORAGE_TRIG_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('LS_SINK_ADLS_STORAGE_TRIG_accountKey')]"
-					}
+					"blobPathBeginsWith": "/csvfile/blobs/csvfile/movies",
+					"blobPathEndsWith": "/csvfile/.csv",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('TRIG_STORAGE_1_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
 				}
 			},
 			"dependsOn": []

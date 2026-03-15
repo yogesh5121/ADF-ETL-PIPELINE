@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_BLOB_TO_ADLS'"
 		},
+		"LS_DEL_ADLS_CSV_TRIG_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_DEL_ADLS_CSV_TRIG'"
+		},
 		"LS_DEL_BLOB_ADLS_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_DEL_BLOB_ADLS'"
@@ -22,6 +26,10 @@
 		"LS_SINK_ADLS_1110_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SINK_ADLS_1110'"
+		},
+		"LS_SINK_ADLS_STORAGE_TRIG_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SINK_ADLS_STORAGE_TRIG'"
 		},
 		"LS_SINK_BLOB_TO_ADLS_accountKey": {
 			"type": "secureString",
@@ -59,6 +67,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SRC_ADLS_TO_CSV_TRI'"
 		},
+		"LS_SRC_ADLS_TO_STORAGE_TRIG_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SRC_ADLS_TO_STORAGE_TRIG'"
+		},
 		"LS_SRC_CSV_TO_ADLS_1110_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SRC_CSV_TO_ADLS_1110'"
@@ -75,13 +87,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SRC_PQ_TRIG'"
 		},
-		"LS_SRC_ADLS_TO_STORAGE_TRIG_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_SRC_ADLS_TO_STORAGE_TRIG'"
-		},
-		"LS_SINK_ADLS_STORAGE_TRIG_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_SINK_ADLS_STORAGE_TRIG'"
+		"LS_DEL_ADLS_CSV_TRIG_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adls2devthjbank.dfs.core.windows.net/"
 		},
 		"LS_DEL_BLOB_ADLS_properties_typeProperties_url": {
 			"type": "string",
@@ -96,6 +104,10 @@
 			"defaultValue": "https://retoolapi.dev/5yDVOt/data"
 		},
 		"LS_SINK_ADLS_1110_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"LS_SINK_ADLS_STORAGE_TRIG_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
 		},
@@ -151,6 +163,10 @@
 			"type": "string",
 			"defaultValue": "https://adls2devthjbank.dfs.core.windows.net/"
 		},
+		"LS_SRC_ADLS_TO_STORAGE_TRIG_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adls2devthjbank.dfs.core.windows.net/"
+		},
 		"LS_SRC_CSV_TO_ADLS_1110_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adls2devthjbank.dfs.core.windows.net/"
@@ -167,19 +183,11 @@
 			"type": "string",
 			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
 		},
-		"LS_SRC_ADLS_TO_STORAGE_TRIG_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://adls2devthjbank.dfs.core.windows.net/"
-		},
-		"LS_SINK_ADLS_STORAGE_TRIG_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
-		},
 		"TRIG_STORAGE_1_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/71f50b89-71a8-4c69-9f9b-464b624e235d/resourceGroups/rg_dev_thjbank/providers/Microsoft.Storage/storageAccounts/adls2devthjbank"
 		},
-		"trigger2_properties_typeProperties_scope": {
+		"trigger_storage_2_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/71f50b89-71a8-4c69-9f9b-464b624e235d/resourceGroups/rg_dev_thjbank/providers/Microsoft.Storage/storageAccounts/adls2devthjbank"
 		}
@@ -188,6 +196,116 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/PL_ADLS_STORAGE_TRIG')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"wildcardFileName": "*.csv",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DS_SRC_STORAGE_EVENT_TRI",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DS_SINK_ADLS_STORAGE_TRIG",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Delete1",
+						"type": "Delete",
+						"dependsOn": [
+							{
+								"activity": "Copy data1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "DS_DEL_FILE_ADLS_TRIG",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"enableLogging": false,
+							"storeSettings": {
+								"type": "AzureBlobFSReadSettings",
+								"recursive": true,
+								"enablePartitionDiscovery": false
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DS_SRC_STORAGE_EVENT_TRI')]",
+				"[concat(variables('factoryId'), '/datasets/DS_SINK_ADLS_STORAGE_TRIG')]",
+				"[concat(variables('factoryId'), '/datasets/DS_DEL_FILE_ADLS_TRIG')]"
+			]
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/PL_BLOB_TO_ADLS')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
@@ -1270,6 +1388,29 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DS_DEL_FILE_ADLS_TRIG')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_DEL_ADLS_CSV_TRIG",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "movies.csv",
+						"fileSystem": "csvfile"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_DEL_ADLS_CSV_TRIG')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/DS_MUTLIPLE_CSV')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1598,6 +1739,107 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/LS_SINK_ADLS_1110')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_SINK_ADLS_STORAGE_TRIG')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_SINK_ADLS_STORAGE_TRIG",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "processed"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": [
+					{
+						"name": "id",
+						"type": "INT64"
+					},
+					{
+						"name": "Sku",
+						"type": "UTF8"
+					},
+					{
+						"name": "TP_1",
+						"type": "UTF8"
+					},
+					{
+						"name": "TP_2",
+						"type": "UTF8"
+					},
+					{
+						"name": "index",
+						"type": "UTF8"
+					},
+					{
+						"name": "Weight",
+						"type": "UTF8"
+					},
+					{
+						"name": "Catalog",
+						"type": "UTF8"
+					},
+					{
+						"name": "MRP_Old",
+						"type": "UTF8"
+					},
+					{
+						"name": "Ajio_MRP",
+						"type": "UTF8"
+					},
+					{
+						"name": "Category",
+						"type": "UTF8"
+					},
+					{
+						"name": "Style_Id",
+						"type": "UTF8"
+					},
+					{
+						"name": "Paytm_MRP",
+						"type": "UTF8"
+					},
+					{
+						"name": "Amazon_MRP",
+						"type": "UTF8"
+					},
+					{
+						"name": "Myntra_MRP",
+						"type": "UTF8"
+					},
+					{
+						"name": "Flipkart_MRP",
+						"type": "UTF8"
+					},
+					{
+						"name": "Limeroad_MRP",
+						"type": "UTF8"
+					},
+					{
+						"name": "Snapdeal_MRP",
+						"type": "UTF8"
+					},
+					{
+						"name": "Final_MRP_Old",
+						"type": "UTF8"
+					},
+					{
+						"name": "Amazon_FBA_MRP",
+						"type": "UTF8"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_SINK_ADLS_STORAGE_TRIG')]"
 			]
 		},
 		{
@@ -1982,6 +2224,33 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DS_SRC_STORAGE_EVENT_TRI')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_SRC_ADLS_TO_STORAGE_TRIG",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "csvfile"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_SRC_ADLS_TO_STORAGE_TRIG')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SqlServerTable1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -2008,6 +2277,23 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('LS_BLOB_TO_ADLS_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_DEL_ADLS_CSV_TRIG')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_DEL_ADLS_CSV_TRIG_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_DEL_ADLS_CSV_TRIG_accountKey')]"
+					}
 				}
 			},
 			"dependsOn": []
@@ -2073,6 +2359,23 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('LS_SINK_ADLS_1110_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_SINK_ADLS_STORAGE_TRIG')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_SINK_ADLS_STORAGE_TRIG_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_SINK_ADLS_STORAGE_TRIG_accountKey')]"
 					}
 				}
 			},
@@ -2255,6 +2558,23 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/LS_SRC_ADLS_TO_STORAGE_TRIG')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_SRC_ADLS_TO_STORAGE_TRIG_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_SRC_ADLS_TO_STORAGE_TRIG_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/LS_SRC_CSV_TO_ADLS_1110')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -2323,6 +2643,27 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/TRIG_STORAGE_1')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/csvfile/blobs/csvfile/movies",
+					"blobPathEndsWith": "/csvfile/.csv",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('TRIG_STORAGE_1_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/trigger1')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -2353,6 +2694,36 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/trigger_storage_2')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "PL_ADLS_STORAGE_TRIG",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/csvfile/blobs/movies.csv",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('trigger_storage_2_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/PL_ADLS_STORAGE_TRIG')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/integrationRuntime1')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
 			"apiVersion": "2018-06-01",
@@ -2371,306 +2742,6 @@
 				"typeProperties": {}
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/PL_ADLS_STORAGE_TRIG')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobFSReadSettings",
-									"recursive": true,
-									"wildcardFileName": "*.csv",
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "DS_SRC_STORAGE_EVENT_TRI",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DS_SINK_ADLS_STORAGE_TRIG",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/DS_SRC_STORAGE_EVENT_TRI')]",
-				"[concat(variables('factoryId'), '/datasets/DS_SINK_ADLS_STORAGE_TRIG')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_SRC_ADLS_TO_STORAGE_TRIG')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('LS_SRC_ADLS_TO_STORAGE_TRIG_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('LS_SRC_ADLS_TO_STORAGE_TRIG_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_SRC_STORAGE_EVENT_TRI')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_SRC_ADLS_TO_STORAGE_TRIG",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "csvfile"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_SRC_ADLS_TO_STORAGE_TRIG')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_SINK_ADLS_STORAGE_TRIG')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('LS_SINK_ADLS_STORAGE_TRIG_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('LS_SINK_ADLS_STORAGE_TRIG_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_SINK_ADLS_STORAGE_TRIG')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_SINK_ADLS_STORAGE_TRIG",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "processed"
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": [
-					{
-						"name": "id",
-						"type": "INT64"
-					},
-					{
-						"name": "Sku",
-						"type": "UTF8"
-					},
-					{
-						"name": "TP_1",
-						"type": "UTF8"
-					},
-					{
-						"name": "TP_2",
-						"type": "UTF8"
-					},
-					{
-						"name": "index",
-						"type": "UTF8"
-					},
-					{
-						"name": "Weight",
-						"type": "UTF8"
-					},
-					{
-						"name": "Catalog",
-						"type": "UTF8"
-					},
-					{
-						"name": "MRP_Old",
-						"type": "UTF8"
-					},
-					{
-						"name": "Ajio_MRP",
-						"type": "UTF8"
-					},
-					{
-						"name": "Category",
-						"type": "UTF8"
-					},
-					{
-						"name": "Style_Id",
-						"type": "UTF8"
-					},
-					{
-						"name": "Paytm_MRP",
-						"type": "UTF8"
-					},
-					{
-						"name": "Amazon_MRP",
-						"type": "UTF8"
-					},
-					{
-						"name": "Myntra_MRP",
-						"type": "UTF8"
-					},
-					{
-						"name": "Flipkart_MRP",
-						"type": "UTF8"
-					},
-					{
-						"name": "Limeroad_MRP",
-						"type": "UTF8"
-					},
-					{
-						"name": "Snapdeal_MRP",
-						"type": "UTF8"
-					},
-					{
-						"name": "Final_MRP_Old",
-						"type": "UTF8"
-					},
-					{
-						"name": "Amazon_FBA_MRP",
-						"type": "UTF8"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_SINK_ADLS_STORAGE_TRIG')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/TRIG_STORAGE_1')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "PL_ADLS_STORAGE_TRIG",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/csvfile/blobs/csvfile/movies",
-					"blobPathEndsWith": "/csvfile/.csv",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('TRIG_STORAGE_1_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/PL_ADLS_STORAGE_TRIG')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/trigger2')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "PL_ADLS_STORAGE_TRIG",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/csvfile/blobs/",
-					"blobPathEndsWith": "csvfile/.csv",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('trigger2_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/PL_ADLS_STORAGE_TRIG')]"
-			]
 		}
 	]
 }
