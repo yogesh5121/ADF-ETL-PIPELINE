@@ -2,7 +2,7 @@
 	"name": "TRIG_STORAGE_1",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
@@ -13,8 +13,8 @@
 		],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
-			"blobPathBeginsWith": "/csvfile/blobs/movies",
-			"blobPathEndsWith": ".csv",
+			"blobPathBeginsWith": "/csvfile/blobs/csvfile/movies",
+			"blobPathEndsWith": "/csvfile/.csv",
 			"ignoreEmptyBlobs": true,
 			"scope": "/subscriptions/71f50b89-71a8-4c69-9f9b-464b624e235d/resourceGroups/rg_dev_thjbank/providers/Microsoft.Storage/storageAccounts/adls2devthjbank",
 			"events": [
