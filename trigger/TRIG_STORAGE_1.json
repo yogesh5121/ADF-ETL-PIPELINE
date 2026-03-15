@@ -2,7 +2,7 @@
 	"name": "TRIG_STORAGE_1",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
