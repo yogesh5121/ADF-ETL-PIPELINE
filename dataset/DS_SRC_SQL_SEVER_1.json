@@ -1,0 +1,12 @@
+{
+	"name": "DS_SRC_SQL_SEVER_1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SRC_SQL_SEVER_ADLS_1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
