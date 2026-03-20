@@ -65,6 +65,12 @@
 		"LS_SRC_PQ_TRIG_accountKey": {
 			"value": ""
 		},
+		"LS_SRC_SQL_SEVER_ADLS_1_password": {
+			"value": ""
+		},
+		"LS__password": {
+			"value": ""
+		},
 		"LS_DEL_ADLS_CSV_TRIG_properties_typeProperties_url": {
 			"value": "https://adls2devthjbank.dfs.core.windows.net/"
 		},
@@ -142,6 +148,24 @@
 		},
 		"trigger_storage_2_properties_typeProperties_scope": {
 			"value": "/subscriptions/71f50b89-71a8-4c69-9f9b-464b624e235d/resourceGroups/rg_dev_thjbank/providers/Microsoft.Storage/storageAccounts/adls2devthjbank"
+		},
+		"LS_SRC_SQL_SEVER_ADLS_1_properties_typeProperties_server": {
+			"value": "YOGESH-ACER\\SQLEXPRESS"
+		},
+		"LS_SRC_SQL_SEVER_ADLS_1_properties_typeProperties_database": {
+			"value": "yogeshDB"
+		},
+		"LS_SRC_SQL_SEVER_ADLS_1_properties_typeProperties_userName": {
+			"value": "sa"
+		},
+		"LS__properties_typeProperties_server": {
+			"value": "YOGESH-ACER\\SQLEXPRESS"
+		},
+		"LS__properties_typeProperties_database": {
+			"value": "yogeshDB"
+		},
+		"LS__properties_typeProperties_userName": {
+			"value": "sa"
 		}
 	}
 }
