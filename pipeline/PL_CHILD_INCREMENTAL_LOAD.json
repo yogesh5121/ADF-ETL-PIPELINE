@@ -15,11 +15,17 @@
 				},
 				"userProperties": [
 					{
-						"name": "schemaname",
+						"name": "TableSchema",
 						"value": ""
 					},
 					{
-						"name": "tablename"
+						"name": "TableName"
+					},
+					{
+						"name": "WatermarkColumn"
+					},
+					{
+						"name": "LastLoadValue"
 					}
 				],
 				"typeProperties": {
@@ -34,7 +40,17 @@
 					},
 					"dataset": {
 						"referenceName": "DS_SRC_LOK_UP_MAX_VALUE",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"schemaname": {
+								"value": "@pipeline().parameters.TableSchema",
+								"type": "Expression"
+							},
+							"tablename": {
+								"value": "@pipeline().parameters.TableName",
+								"type": "Expression"
+							}
+						}
 					},
 					"firstRowOnly": false
 				}
