@@ -1,9 +1,9 @@
 {
-	"name": "pipeline1",
+	"name": "PL_SP_UPDATE_WATERMARK",
 	"properties": {
 		"activities": [
 			{
-				"name": "Stored procedure1",
+				"name": "SP_UPDATE_WATERMARK",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [],
 				"policy": {
@@ -18,15 +18,24 @@
 					"storedProcedureName": "[dbo].[UpdateWatermark]",
 					"storedProcedureParameters": {
 						"TableName": {
-							"value": "",
+							"value": {
+								"value": "@pipeline().parameters.TableName",
+								"type": "Expression"
+							},
 							"type": "String"
 						},
 						"TableSchema": {
-							"value": "",
+							"value": {
+								"value": "@pipeline().parameters.TableSchema",
+								"type": "Expression"
+							},
 							"type": "String"
 						},
 						"WatermarkColumn": {
-							"value": "",
+							"value": {
+								"value": "@pipeline().parameters.WatermarkColumn",
+								"type": "Expression"
+							},
 							"type": "String"
 						}
 					}
@@ -37,6 +46,17 @@
 				}
 			}
 		],
+		"parameters": {
+			"TableName": {
+				"type": "string"
+			},
+			"TableSchema": {
+				"type": "string"
+			},
+			"WatermarkColumn": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
