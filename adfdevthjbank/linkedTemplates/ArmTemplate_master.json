@@ -7,6 +7,14 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adfdevthjbank"
 		},
+		"AzureDataLakeStorage1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
+		},
+		"LS__password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_'"
+		},
 		"LS_BLOB_TO_ADLS_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_BLOB_TO_ADLS'"
@@ -91,9 +99,25 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_SRC_SQL_SEVER_ADLS_1'"
 		},
-		"LS__password": {
+		"SINK_ADLS_TO_SQL_SEVER_LOAD_accountKey": {
 			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'LS_'"
+			"metadata": "Secure string for 'accountKey' of 'SINK_ADLS_TO_SQL_SEVER_LOAD'"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"LS__properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "YOGESH-ACER\\SQLEXPRESS"
+		},
+		"LS__properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "yogeshDB"
+		},
+		"LS__properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sa"
 		},
 		"LS_DEL_ADLS_CSV_TRIG_properties_typeProperties_url": {
 			"type": "string",
@@ -191,14 +215,6 @@
 			"type": "string",
 			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
 		},
-		"TRIG_STORAGE_1_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/71f50b89-71a8-4c69-9f9b-464b624e235d/resourceGroups/rg_dev_thjbank/providers/Microsoft.Storage/storageAccounts/adls2devthjbank"
-		},
-		"trigger_storage_2_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/71f50b89-71a8-4c69-9f9b-464b624e235d/resourceGroups/rg_dev_thjbank/providers/Microsoft.Storage/storageAccounts/adls2devthjbank"
-		},
 		"LS_SRC_SQL_SEVER_ADLS_1_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "YOGESH-ACER\\SQLEXPRESS"
@@ -211,17 +227,17 @@
 			"type": "string",
 			"defaultValue": "sa"
 		},
-		"LS__properties_typeProperties_server": {
+		"SINK_ADLS_TO_SQL_SEVER_LOAD_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "YOGESH-ACER\\SQLEXPRESS"
+			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
 		},
-		"LS__properties_typeProperties_database": {
+		"TRIG_STORAGE_1_properties_typeProperties_scope": {
 			"type": "string",
-			"defaultValue": "yogeshDB"
+			"defaultValue": "/subscriptions/71f50b89-71a8-4c69-9f9b-464b624e235d/resourceGroups/rg_dev_thjbank/providers/Microsoft.Storage/storageAccounts/adls2devthjbank"
 		},
-		"LS__properties_typeProperties_userName": {
+		"trigger_storage_2_properties_typeProperties_scope": {
 			"type": "string",
-			"defaultValue": "sa"
+			"defaultValue": "/subscriptions/71f50b89-71a8-4c69-9f9b-464b624e235d/resourceGroups/rg_dev_thjbank/providers/Microsoft.Storage/storageAccounts/adls2devthjbank"
 		},
 		"containerUri": {
 			"type": "string",
@@ -249,6 +265,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"AzureDataLakeStorage1_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
 					},
 					"LS_BLOB_TO_ADLS_connectionString": {
 						"value": "[parameters('LS_BLOB_TO_ADLS_connectionString')]"
@@ -304,6 +323,9 @@
 					"LS_SRC_PQ_TRIG_accountKey": {
 						"value": "[parameters('LS_SRC_PQ_TRIG_accountKey')]"
 					},
+					"AzureDataLakeStorage1_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
 					"LS_DEL_ADLS_CSV_TRIG_properties_typeProperties_url": {
 						"value": "[parameters('LS_DEL_ADLS_CSV_TRIG_properties_typeProperties_url')]"
 					},
@@ -357,9 +379,6 @@
 					},
 					"LS_SRC_PQ_TRIG_properties_typeProperties_url": {
 						"value": "[parameters('LS_SRC_PQ_TRIG_properties_typeProperties_url')]"
-					},
-					"TRIG_STORAGE_1_properties_typeProperties_scope": {
-						"value": "[parameters('TRIG_STORAGE_1_properties_typeProperties_scope')]"
 					}
 				}
 			},
@@ -378,6 +397,15 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"SINK_ADLS_TO_SQL_SEVER_LOAD_accountKey": {
+						"value": "[parameters('SINK_ADLS_TO_SQL_SEVER_LOAD_accountKey')]"
+					},
+					"SINK_ADLS_TO_SQL_SEVER_LOAD_properties_typeProperties_url": {
+						"value": "[parameters('SINK_ADLS_TO_SQL_SEVER_LOAD_properties_typeProperties_url')]"
+					},
+					"TRIG_STORAGE_1_properties_typeProperties_scope": {
+						"value": "[parameters('TRIG_STORAGE_1_properties_typeProperties_scope')]"
 					}
 				}
 			},
@@ -399,6 +427,9 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"LS__password": {
+						"value": "[parameters('LS__password')]"
+					},
 					"LS_SOURCE_MYSQL_ADLS_password": {
 						"value": "[parameters('LS_SOURCE_MYSQL_ADLS_password')]"
 					},
@@ -408,8 +439,14 @@
 					"LS_SRC_SQL_SEVER_ADLS_1_password": {
 						"value": "[parameters('LS_SRC_SQL_SEVER_ADLS_1_password')]"
 					},
-					"LS__password": {
-						"value": "[parameters('LS__password')]"
+					"LS__properties_typeProperties_server": {
+						"value": "[parameters('LS__properties_typeProperties_server')]"
+					},
+					"LS__properties_typeProperties_database": {
+						"value": "[parameters('LS__properties_typeProperties_database')]"
+					},
+					"LS__properties_typeProperties_userName": {
+						"value": "[parameters('LS__properties_typeProperties_userName')]"
 					},
 					"LS_SOURCE_MYSQL_ADLS_properties_typeProperties_server": {
 						"value": "[parameters('LS_SOURCE_MYSQL_ADLS_properties_typeProperties_server')]"
@@ -437,15 +474,6 @@
 					},
 					"LS_SRC_SQL_SEVER_ADLS_1_properties_typeProperties_userName": {
 						"value": "[parameters('LS_SRC_SQL_SEVER_ADLS_1_properties_typeProperties_userName')]"
-					},
-					"LS__properties_typeProperties_server": {
-						"value": "[parameters('LS__properties_typeProperties_server')]"
-					},
-					"LS__properties_typeProperties_database": {
-						"value": "[parameters('LS__properties_typeProperties_database')]"
-					},
-					"LS__properties_typeProperties_userName": {
-						"value": "[parameters('LS__properties_typeProperties_userName')]"
 					}
 				}
 			},
