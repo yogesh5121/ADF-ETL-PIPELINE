@@ -27,7 +27,8 @@
 					"dataset": {
 						"referenceName": "DS_SRC_SQL_SEVER_1",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
@@ -49,7 +50,7 @@
 					},
 					"activities": [
 						{
-							"name": "Execute Child Incrmental pipeline",
+							"name": "ExecutePipeline_incremental",
 							"type": "ExecutePipeline",
 							"dependsOn": [],
 							"policy": {
@@ -72,7 +73,7 @@
 										"type": "Expression"
 									},
 									"WaterMarkColumn": {
-										"value": "@item().WatermarkColumn",
+										"value": "@item().WaterMarkColumn",
 										"type": "Expression"
 									},
 									"LastLoadValue": {
