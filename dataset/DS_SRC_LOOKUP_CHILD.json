@@ -1,0 +1,30 @@
+{
+	"name": "DS_SRC_LOOKUP_CHILD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SRC_SQL_SEVER_CHILD",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"TableName": {
+				"type": "string"
+			},
+			"TableSchema": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().TableSchema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().TableName",
+				"type": "Expression"
+			}
+		}
+	}
+}
