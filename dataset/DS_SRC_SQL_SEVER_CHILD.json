@@ -1,0 +1,12 @@
+{
+	"name": "DS_SRC_SQL_SEVER_CHILD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SRC_SQL_TO_PARQUET_CHILD",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
