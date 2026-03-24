@@ -1,0 +1,30 @@
+{
+	"name": "DS_SRC_CHILD_PIPELINE_SQL_SEVER",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SRC_SQL_SEVER_CHILD",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"TableSchema": {
+				"type": "string"
+			},
+			"TableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().TableSchema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().TableName",
+				"type": "Expression"
+			}
+		}
+	}
+}
