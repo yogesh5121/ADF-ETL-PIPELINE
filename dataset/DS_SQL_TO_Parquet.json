@@ -1,0 +1,21 @@
+{
+	"name": "DS_SQL_TO_Parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SINK_SQL_PARQUET_ADLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "@concat(dataset().Table_Name,'_',formatDateTime(utcNow(),'yyyyMMddHHmmss'),'.parquet')",
+				"folderPath": "@concat(dataset().Table_Name,'/',formatDateTime(utcNow(),'yyyy/MM/dd’))",
+				"fileSystem": "retaildata"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
