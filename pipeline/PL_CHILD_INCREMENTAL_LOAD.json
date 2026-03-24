@@ -1,0 +1,147 @@
+{
+	"name": "PL_CHILD_INCREMENTAL_LOAD",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup_Max_Value",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "SELECT MAX(@{pipeline().parameters.WatermarkColumn}) AS MaxValue\nFROM @{pipeline().parameters.TableSchema}.@{pipeline().parameters.TableName}\n",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DS_SRC_LOOKUP_CHILD",
+						"type": "DatasetReference",
+						"parameters": {
+							"TableSchema": {
+								"value": "@pipeline().parameters.TableSchema",
+								"type": "Expression"
+							},
+							"TableName": {
+								"value": "@pipeline().parameters.TableName",
+								"type": "Expression"
+							}
+						}
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Lookup_Max_Value",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@or(equals(pipeline().parameters.LastLoadValue, null), greater(int(activity('Lookup_Max_Value').output.firstRow.MaxValue), int(pipeline().parameters.LastLoadValue)))",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "CPY_SQL_IN_CTLOAD",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"sqlReaderQuery": {
+										"value": "@concat(\n    'SELECT * FROM ',\n    pipeline().parameters.TableSchema, '.', pipeline().parameters.TableName,\n    if(\n        equals(pipeline().parameters.LastLoadValue, null),\n        '',\n        concat(\n            ' WHERE ', pipeline().parameters.WatermarkColumn,\n            ' > ''', string(pipeline().parameters.LastLoadValue), ''''\n        )\n    )\n)\n",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_SRC_LOOKUP_CHILD",
+									"type": "DatasetReference",
+									"parameters": {
+										"TableSchema": {
+											"value": "@pipeline().parameters.TableSchema",
+											"type": "Expression"
+										},
+										"TableName": {
+											"value": "@pipeline().parameters.TableName",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DS_SQL_TO_Parquet",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"TableSchema": {
+				"type": "string",
+				"defaultValue": "dbo"
+			},
+			"TableName": {
+				"type": "string",
+				"defaultValue": "DimProduct"
+			},
+			"WatermarkColumn": {
+				"type": "string",
+				"defaultValue": "ProductKey"
+			},
+			"LastLoadValue": {
+				"type": "int",
+				"defaultValue": 0
+			}
+		},
+		"annotations": []
+	}
+}
