@@ -2,7 +2,7 @@
 	"name": "DS_SRC_LOK_UP_MAX_VALUE",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "LS_",
+			"referenceName": "LS_SRC_SQL_SEVER_CHILD",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
