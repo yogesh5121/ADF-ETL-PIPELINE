@@ -55,6 +55,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SINK_REST_API_TO_ADLS'"
 		},
+		"LS_SINK_SQL_PARQUET_ADLS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SINK_SQL_PARQUET_ADLS'"
+		},
 		"LS_SINK_SQL_TO_ADLS_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SINK_SQL_TO_ADLS'"
@@ -78,10 +82,6 @@
 		"LS_SRC_LOOK_UP_CSV_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SRC_LOOK_UP_CSV'"
-		},
-		"LS_SRC_PQ_TRIG_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'LS_SRC_PQ_TRIG'"
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
@@ -131,6 +131,10 @@
 			"type": "string",
 			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
 		},
+		"LS_SINK_SQL_PARQUET_ADLS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
 		"LS_SINK_SQL_TO_ADLS_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
@@ -154,10 +158,6 @@
 		"LS_SRC_LOOK_UP_CSV_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adls2devthjbank.dfs.core.windows.net/"
-		},
-		"LS_SRC_PQ_TRIG_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
@@ -380,6 +380,23 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/LS_SINK_SQL_PARQUET_ADLS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_SINK_SQL_PARQUET_ADLS_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_SINK_SQL_PARQUET_ADLS_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/LS_SINK_SQL_TO_ADLS')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -476,23 +493,6 @@
 					"accountKey": {
 						"type": "SecureString",
 						"value": "[parameters('LS_SRC_LOOK_UP_CSV_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_SRC_PQ_TRIG')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('LS_SRC_PQ_TRIG_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('LS_SRC_PQ_TRIG_accountKey')]"
 					}
 				}
 			},

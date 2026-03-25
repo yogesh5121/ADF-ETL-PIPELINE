@@ -8,9 +8,6 @@
 		"AzureDataLakeStorage1_accountKey": {
 			"value": ""
 		},
-		"LS__password": {
-			"value": ""
-		},
 		"LS_BLOB_TO_ADLS_connectionString": {
 			"value": ""
 		},
@@ -44,6 +41,9 @@
 		"LS_SINK_REST_API_TO_ADLS_accountKey": {
 			"value": ""
 		},
+		"LS_SINK_SQL_PARQUET_ADLS_accountKey": {
+			"value": ""
+		},
 		"LS_SINK_SQL_TO_ADLS_accountKey": {
 			"value": ""
 		},
@@ -74,20 +74,17 @@
 		"LS_SRC_SQL_SEVER_ADLS_1_password": {
 			"value": ""
 		},
+		"LS_SRC_SQL_SEVER_CHILD_password": {
+			"value": ""
+		},
+		"LS_SRC_SQL_TO_PARQUET_CHILD_password": {
+			"value": ""
+		},
 		"SINK_ADLS_TO_SQL_SEVER_LOAD_accountKey": {
 			"value": ""
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://adlsdevthjbank.dfs.core.windows.net/"
-		},
-		"LS__properties_typeProperties_server": {
-			"value": "YOGESH-ACER\\SQLEXPRESS"
-		},
-		"LS__properties_typeProperties_database": {
-			"value": "yogeshDB"
-		},
-		"LS__properties_typeProperties_userName": {
-			"value": "sa"
 		},
 		"LS_DEL_ADLS_CSV_TRIG_properties_typeProperties_url": {
 			"value": "https://adls2devthjbank.dfs.core.windows.net/"
@@ -120,6 +117,9 @@
 			"value": "https://adlsdevthjbank.dfs.core.windows.net/"
 		},
 		"LS_SINK_REST_API_TO_ADLS_properties_typeProperties_url": {
+			"value": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"LS_SINK_SQL_PARQUET_ADLS_properties_typeProperties_url": {
 			"value": "https://adlsdevthjbank.dfs.core.windows.net/"
 		},
 		"LS_SINK_SQL_TO_ADLS_properties_typeProperties_url": {
@@ -168,6 +168,24 @@
 			"value": "yogeshDB"
 		},
 		"LS_SRC_SQL_SEVER_ADLS_1_properties_typeProperties_userName": {
+			"value": "sa"
+		},
+		"LS_SRC_SQL_SEVER_CHILD_properties_typeProperties_server": {
+			"value": "YOGESH-ACER\\SQLEXPRESS"
+		},
+		"LS_SRC_SQL_SEVER_CHILD_properties_typeProperties_database": {
+			"value": "yogeshDB"
+		},
+		"LS_SRC_SQL_SEVER_CHILD_properties_typeProperties_userName": {
+			"value": "sa"
+		},
+		"LS_SRC_SQL_TO_PARQUET_CHILD_properties_typeProperties_server": {
+			"value": "YOGESH-ACER\\SQLEXPRESS"
+		},
+		"LS_SRC_SQL_TO_PARQUET_CHILD_properties_typeProperties_database": {
+			"value": "yogeshDB"
+		},
+		"LS_SRC_SQL_TO_PARQUET_CHILD_properties_typeProperties_userName": {
 			"value": "sa"
 		},
 		"SINK_ADLS_TO_SQL_SEVER_LOAD_properties_typeProperties_url": {

@@ -11,10 +11,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
 		},
-		"LS__password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'LS_'"
-		},
 		"LS_BLOB_TO_ADLS_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_BLOB_TO_ADLS'"
@@ -59,6 +55,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SINK_REST_API_TO_ADLS'"
 		},
+		"LS_SINK_SQL_PARQUET_ADLS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LS_SINK_SQL_PARQUET_ADLS'"
+		},
 		"LS_SINK_SQL_TO_ADLS_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_SINK_SQL_TO_ADLS'"
@@ -99,6 +99,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_SRC_SQL_SEVER_ADLS_1'"
 		},
+		"LS_SRC_SQL_SEVER_CHILD_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SRC_SQL_SEVER_CHILD'"
+		},
+		"LS_SRC_SQL_TO_PARQUET_CHILD_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SRC_SQL_TO_PARQUET_CHILD'"
+		},
 		"SINK_ADLS_TO_SQL_SEVER_LOAD_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'SINK_ADLS_TO_SQL_SEVER_LOAD'"
@@ -106,18 +114,6 @@
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
-		},
-		"LS__properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "YOGESH-ACER\\SQLEXPRESS"
-		},
-		"LS__properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "yogeshDB"
-		},
-		"LS__properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "sa"
 		},
 		"LS_DEL_ADLS_CSV_TRIG_properties_typeProperties_url": {
 			"type": "string",
@@ -160,6 +156,10 @@
 			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
 		},
 		"LS_SINK_REST_API_TO_ADLS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
+		},
+		"LS_SINK_SQL_PARQUET_ADLS_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdevthjbank.dfs.core.windows.net/"
 		},
@@ -224,6 +224,30 @@
 			"defaultValue": "yogeshDB"
 		},
 		"LS_SRC_SQL_SEVER_ADLS_1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sa"
+		},
+		"LS_SRC_SQL_SEVER_CHILD_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "YOGESH-ACER\\SQLEXPRESS"
+		},
+		"LS_SRC_SQL_SEVER_CHILD_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "yogeshDB"
+		},
+		"LS_SRC_SQL_SEVER_CHILD_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sa"
+		},
+		"LS_SRC_SQL_TO_PARQUET_CHILD_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "YOGESH-ACER\\SQLEXPRESS"
+		},
+		"LS_SRC_SQL_TO_PARQUET_CHILD_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "yogeshDB"
+		},
+		"LS_SRC_SQL_TO_PARQUET_CHILD_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "sa"
 		},
@@ -302,6 +326,9 @@
 					"LS_SINK_REST_API_TO_ADLS_accountKey": {
 						"value": "[parameters('LS_SINK_REST_API_TO_ADLS_accountKey')]"
 					},
+					"LS_SINK_SQL_PARQUET_ADLS_accountKey": {
+						"value": "[parameters('LS_SINK_SQL_PARQUET_ADLS_accountKey')]"
+					},
 					"LS_SINK_SQL_TO_ADLS_accountKey": {
 						"value": "[parameters('LS_SINK_SQL_TO_ADLS_accountKey')]"
 					},
@@ -319,9 +346,6 @@
 					},
 					"LS_SRC_LOOK_UP_CSV_accountKey": {
 						"value": "[parameters('LS_SRC_LOOK_UP_CSV_accountKey')]"
-					},
-					"LS_SRC_PQ_TRIG_accountKey": {
-						"value": "[parameters('LS_SRC_PQ_TRIG_accountKey')]"
 					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
@@ -359,6 +383,9 @@
 					"LS_SINK_REST_API_TO_ADLS_properties_typeProperties_url": {
 						"value": "[parameters('LS_SINK_REST_API_TO_ADLS_properties_typeProperties_url')]"
 					},
+					"LS_SINK_SQL_PARQUET_ADLS_properties_typeProperties_url": {
+						"value": "[parameters('LS_SINK_SQL_PARQUET_ADLS_properties_typeProperties_url')]"
+					},
 					"LS_SINK_SQL_TO_ADLS_properties_typeProperties_url": {
 						"value": "[parameters('LS_SINK_SQL_TO_ADLS_properties_typeProperties_url')]"
 					},
@@ -376,9 +403,6 @@
 					},
 					"LS_SRC_LOOK_UP_CSV_properties_typeProperties_url": {
 						"value": "[parameters('LS_SRC_LOOK_UP_CSV_properties_typeProperties_url')]"
-					},
-					"LS_SRC_PQ_TRIG_properties_typeProperties_url": {
-						"value": "[parameters('LS_SRC_PQ_TRIG_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -398,8 +422,14 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"LS_SRC_PQ_TRIG_accountKey": {
+						"value": "[parameters('LS_SRC_PQ_TRIG_accountKey')]"
+					},
 					"SINK_ADLS_TO_SQL_SEVER_LOAD_accountKey": {
 						"value": "[parameters('SINK_ADLS_TO_SQL_SEVER_LOAD_accountKey')]"
+					},
+					"LS_SRC_PQ_TRIG_properties_typeProperties_url": {
+						"value": "[parameters('LS_SRC_PQ_TRIG_properties_typeProperties_url')]"
 					},
 					"SINK_ADLS_TO_SQL_SEVER_LOAD_properties_typeProperties_url": {
 						"value": "[parameters('SINK_ADLS_TO_SQL_SEVER_LOAD_properties_typeProperties_url')]"
@@ -427,9 +457,6 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"LS__password": {
-						"value": "[parameters('LS__password')]"
-					},
 					"LS_SOURCE_MYSQL_ADLS_password": {
 						"value": "[parameters('LS_SOURCE_MYSQL_ADLS_password')]"
 					},
@@ -439,14 +466,11 @@
 					"LS_SRC_SQL_SEVER_ADLS_1_password": {
 						"value": "[parameters('LS_SRC_SQL_SEVER_ADLS_1_password')]"
 					},
-					"LS__properties_typeProperties_server": {
-						"value": "[parameters('LS__properties_typeProperties_server')]"
+					"LS_SRC_SQL_SEVER_CHILD_password": {
+						"value": "[parameters('LS_SRC_SQL_SEVER_CHILD_password')]"
 					},
-					"LS__properties_typeProperties_database": {
-						"value": "[parameters('LS__properties_typeProperties_database')]"
-					},
-					"LS__properties_typeProperties_userName": {
-						"value": "[parameters('LS__properties_typeProperties_userName')]"
+					"LS_SRC_SQL_TO_PARQUET_CHILD_password": {
+						"value": "[parameters('LS_SRC_SQL_TO_PARQUET_CHILD_password')]"
 					},
 					"LS_SOURCE_MYSQL_ADLS_properties_typeProperties_server": {
 						"value": "[parameters('LS_SOURCE_MYSQL_ADLS_properties_typeProperties_server')]"
@@ -474,6 +498,24 @@
 					},
 					"LS_SRC_SQL_SEVER_ADLS_1_properties_typeProperties_userName": {
 						"value": "[parameters('LS_SRC_SQL_SEVER_ADLS_1_properties_typeProperties_userName')]"
+					},
+					"LS_SRC_SQL_SEVER_CHILD_properties_typeProperties_server": {
+						"value": "[parameters('LS_SRC_SQL_SEVER_CHILD_properties_typeProperties_server')]"
+					},
+					"LS_SRC_SQL_SEVER_CHILD_properties_typeProperties_database": {
+						"value": "[parameters('LS_SRC_SQL_SEVER_CHILD_properties_typeProperties_database')]"
+					},
+					"LS_SRC_SQL_SEVER_CHILD_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SRC_SQL_SEVER_CHILD_properties_typeProperties_userName')]"
+					},
+					"LS_SRC_SQL_TO_PARQUET_CHILD_properties_typeProperties_server": {
+						"value": "[parameters('LS_SRC_SQL_TO_PARQUET_CHILD_properties_typeProperties_server')]"
+					},
+					"LS_SRC_SQL_TO_PARQUET_CHILD_properties_typeProperties_database": {
+						"value": "[parameters('LS_SRC_SQL_TO_PARQUET_CHILD_properties_typeProperties_database')]"
+					},
+					"LS_SRC_SQL_TO_PARQUET_CHILD_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SRC_SQL_TO_PARQUET_CHILD_properties_typeProperties_userName')]"
 					}
 				}
 			},
