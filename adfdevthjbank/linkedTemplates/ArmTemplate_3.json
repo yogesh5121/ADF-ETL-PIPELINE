@@ -338,7 +338,7 @@
 									}
 								}
 							},
-							"firstRowOnly": false
+							"firstRowOnly": true
 						}
 					},
 					{
@@ -827,6 +827,7 @@
 								"value": "@activity('LOOK_UP_SQL_TABLE_WATERMARK').output.value",
 								"type": "Expression"
 							},
+							"isSequential": false,
 							"activities": [
 								{
 									"name": "ExecutePipeline_incremental",
