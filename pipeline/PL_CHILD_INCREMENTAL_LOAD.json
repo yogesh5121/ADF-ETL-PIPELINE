@@ -172,20 +172,16 @@
 		],
 		"parameters": {
 			"TableSchema": {
-				"type": "string",
-				"defaultValue": "dbo"
+				"type": "string"
 			},
 			"TableName": {
-				"type": "string",
-				"defaultValue": "DimProduct"
+				"type": "string"
 			},
 			"WatermarkColumn": {
-				"type": "string",
-				"defaultValue": "ProductKey"
+				"type": "string"
 			},
 			"LastLoadValue": {
-				"type": "int",
-				"defaultValue": 0
+				"type": "int"
 			}
 		},
 		"annotations": []
